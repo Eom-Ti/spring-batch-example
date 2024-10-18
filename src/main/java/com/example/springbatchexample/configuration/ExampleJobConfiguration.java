@@ -27,21 +27,22 @@ public class ExampleJobConfiguration {
     public Step exampleStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("exampleStep", jobRepository)
                 .tasklet((contribution, chunkContext) -> {
+                    log.info("====================================");
                     log.info("hello example spring batch this is step1");
+                    log.info("====================================");
                     return RepeatStatus.FINISHED;
-                }, transactionManager)
-                .build();
+                }, transactionManager).build();
     }
 
     @Bean
     public Step exampleStep2(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-        return new StepBuilder("exampleStep", jobRepository)
+        return new StepBuilder("exampleStep2", jobRepository)
                 .tasklet((contribution, chunkContext) -> {
+                    log.info("====================================");
                     log.info("hello example spring batch this is step2");
+                    log.info("====================================");
                     return RepeatStatus.FINISHED;
                 }, transactionManager)
                 .build();
     }
-
-
 }
