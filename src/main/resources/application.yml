@@ -7,5 +7,7 @@ spring:
   batch:
     jdbc:
       initialize-schema: never
+    job:
+      name: "exampleJob2"
 server:
   port: 8081
