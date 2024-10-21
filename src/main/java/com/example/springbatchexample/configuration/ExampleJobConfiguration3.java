@@ -16,29 +16,29 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class ExampleJobConfiguration3 {
 
-    @Bean(name = "exampleJob2")
-    public Job exampleJob2(JobRepository jobRepository, @Qualifier("example2Step1") Step example2Step1,
-                           @Qualifier("example2Step2") Step example2Step2) {
-        return new JobBuilder("exampleJob2", jobRepository)
-                .start(example2Step1)
-                .start(example2Step2)
+    @Bean(name = "exampleJob3")
+    public Job exampleJob3(JobRepository jobRepository, @Qualifier("example3Step1") Step example3Step1,
+                           @Qualifier("example3Step3") Step example3Step3) {
+        return new JobBuilder("exampleJob3", jobRepository)
+                .start(example3Step1)
+                .start(example3Step3)
                 .build();
     }
 
     @Bean
-    public Step example2Step1(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-        return new StepBuilder("example2Step1", jobRepository)
+    public Step example3Step1(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        return new StepBuilder("example3Step1", jobRepository)
                 .tasklet((contribution, chunkContext) -> {
-                    log.info("example2 Step1 executed");
+                    log.info("example3 Step1 executed");
                     return RepeatStatus.FINISHED;
                 }, transactionManager).build();
     }
 
     @Bean
-    public Step example2Step2(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-        return new StepBuilder("example2Step2", jobRepository)
+    public Step example3Step3(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        return new StepBuilder("example3Step3", jobRepository)
                 .tasklet((contribution, chunkContext) -> {
-                    log.info("example2 Step2 executed");
+                    log.info("example3 Step3 executed");
                     return RepeatStatus.FINISHED;
                 }, transactionManager).build();
     }
