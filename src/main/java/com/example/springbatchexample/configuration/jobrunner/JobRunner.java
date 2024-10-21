@@ -8,7 +8,9 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JobRunner implements ApplicationRunner {
 
     private final JobLauncher jobLauncher;
