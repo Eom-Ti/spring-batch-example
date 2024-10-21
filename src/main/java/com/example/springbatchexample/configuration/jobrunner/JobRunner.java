@@ -2,6 +2,8 @@ package com.example.springbatchexample.configuration.jobrunner;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationArguments;
@@ -19,6 +21,10 @@ public class JobRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addString("name", "user1")
+                .toJobParameters();
 
+        jobLauncher.run(job, jobParameters);
     }
 }
