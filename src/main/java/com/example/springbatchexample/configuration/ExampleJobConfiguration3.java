@@ -18,7 +18,7 @@ public class ExampleJobConfiguration3 {
 
     @Bean(name = "exampleJob3")
     public Job exampleJob3(JobRepository jobRepository, @Qualifier("example3Step1") Step example3Step1,
-                           @Qualifier("example3Step3") Step example3Step3) {
+                           @Qualifier("example3Step2") Step example3Step3) {
         return new JobBuilder("exampleJob3", jobRepository)
                 .start(example3Step1)
                 .start(example3Step3)
@@ -35,10 +35,10 @@ public class ExampleJobConfiguration3 {
     }
 
     @Bean
-    public Step example3Step3(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-        return new StepBuilder("example3Step3", jobRepository)
+    public Step example3Step2(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        return new StepBuilder("example3Step2", jobRepository)
                 .tasklet((contribution, chunkContext) -> {
-                    log.info("example3 Step3 executed");
+                    log.info("example3 Step2 executed");
                     return RepeatStatus.FINISHED;
                 }, transactionManager).build();
     }
