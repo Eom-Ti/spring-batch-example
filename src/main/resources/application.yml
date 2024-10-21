@@ -8,6 +8,6 @@ spring:
     jdbc:
       initialize-schema: never
     job:
-      name: "exampleJob2"
+      name: "exampleJob3"
 server:
   port: 8081
