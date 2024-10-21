@@ -9,5 +9,6 @@ spring:
       initialize-schema: never
     job:
       name: "exampleJob3"
+      enabled: false
 server:
   port: 8081
