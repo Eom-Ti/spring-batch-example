@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.util.Map;
+
 @Slf4j
 @Configuration
 public class ExampleJobConfiguration {
@@ -28,8 +30,14 @@ public class ExampleJobConfiguration {
         return new StepBuilder("exampleStep", jobRepository)
                 .tasklet((contribution, chunkContext) -> {
                     log.info("====================================");
+                    log.info(String.valueOf(contribution.getStepExecution().getJobParameters().getParameter("name")));
+                    log.info(String.valueOf(contribution.getStepExecution().getJobParameters().getParameter("seq")));
+                    log.info(String.valueOf(contribution.getStepExecution().getJobParameters().getParameter("date")));
+                    log.info(String.valueOf(contribution.getStepExecution().getJobParameters().getParameter("age")));
+                    log.info("====================================");
                     log.info("hello example spring batch this is step1");
                     log.info("====================================");
+                    Map<String, Object> jobParameters = chunkContext.getStepContext().getJobParameters();
                     return RepeatStatus.FINISHED;
                 }, transactionManager).build();
     }
